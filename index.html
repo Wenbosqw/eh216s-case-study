@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EH216-S：技术、场景与市场可行性 | 飞行汽车技术基础</title>
+  <meta name="description" content="以亿航智能 EH216-S 为对象的课程案例分析，覆盖技术构型、适航安全、应用场景、市场可行性、竞品比较与工程化路线。">
+  <style>
+    :root{
+      --ink:#17202a; --ink-soft:#465665; --muted:#6f7d88; --paper:#f7f5ef;
+      --panel:#fffdf8; --line:#d9d2c3; --sky:#1f6f8b; --sky-deep:#134558;
+      --gold:#b7792b; --green:#39735f; --red:#9b4438; --shadow:0 18px 45px rgba(23,32,42,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",system-ui,sans-serif;line-height:1.78}
+    a{color:var(--sky-deep);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+    header.hero{background:linear-gradient(135deg,#134558 0%,#1f6f8b 58%,#3d8ea4 100%);color:#fff;padding:54px 0 38px;position:relative;overflow:hidden}
+    header.hero:after{content:"";position:absolute;inset:auto -12% -55% -12%;height:45%;background:repeating-linear-gradient(120deg,rgba(255,255,255,.08) 0 2px,transparent 2px 22px);transform:rotate(-3deg);pointer-events:none}
+    .eyebrow{font-size:13px;letter-spacing:.18em;color:#d8edf3;margin:0 0 16px}
+    h1{font-size:clamp(30px,5vw,52px);line-height:1.18;margin:0 0 18px;letter-spacing:-.02em}
+    .subtitle{max-width:780px;font-size:18px;color:#eaf5f7;margin:0 0 24px}
+    .meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:14px;color:#d8edf3}
+    .hero-figure{margin:30px 0 0;position:relative;z-index:1}
+    .hero-figure img{width:100%;max-height:430px;object-fit:cover;border-radius:18px;box-shadow:var(--shadow)}
+    figcaption{font-size:13px;color:#d8edf3;margin-top:10px}
+    nav.toc{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+    nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px}
+    nav.toc a{white-space:nowrap;font-size:14px;color:var(--ink-soft);padding:7px 11px;border-radius:9px}
+    nav.toc a:hover{background:#eee7d8;text-decoration:none}
+    main{padding:34px 0 70px}
+    section{margin:38px 0;padding:30px 0;border-top:1px solid var(--line)}
+    section:first-of-type{border-top:0}
+    h2{font-size:28px;line-height:1.3;margin:0 0 18px;color:var(--sky-deep)}
+    h3{font-size:19px;margin:24px 0 10px;color:var(--ink)}
+    p{margin:10px 0}
+    .lead{font-size:17px;color:var(--ink-soft)}
+    .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+    .stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .stat b{display:block;font-size:28px;color:var(--sky-deep);line-height:1.1}
+    .stat span{font-size:13px;color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+    .card h3{margin-top:0}
+    table{width:100%;border-collapse:collapse;margin:18px 0;background:var(--panel);font-size:14px;table-layout:fixed}
+    col:first-child{width:19%}
+    th,td{border:1px solid var(--line);padding:11px 12px;vertical-align:top}
+    th{background:#eee7d8;color:var(--ink);text-align:left}
+    .timeline{display:grid;grid-template-columns:120px 28px 1fr;gap:0 14px;margin:24px 0}
+    .timeline .time{font-weight:700;color:var(--sky-deep);padding-top:4px}
+    .timeline .dot{width:13px;height:13px;border-radius:50%;background:var(--gold);margin:8px auto 0;position:relative}
+    .timeline .dot:before{content:"";position:absolute;left:50%;top:18px;bottom:-24px;width:2px;background:var(--line);transform:translateX(-50%)}
+    .timeline .item:last-child .dot:before{display:none}
+    .timeline .body{padding-bottom:22px}
+    .note{border-left:4px solid var(--sky);background:#eef6f8;border-radius:0 14px 14px 0;padding:16px 18px;margin:18px 0}
+    .warning{border-left-color:var(--red);background:#f9eeec}
+    .photo-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+    .photo-row figure{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .photo-row img{width:100%;height:230px;object-fit:cover}
+    .photo-row figcaption{color:var(--muted);padding:10px 13px;font-size:13px}
+    .stack{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+    .stack .card{background:#fbfaf5}
+    ul{padding-left:20px}
+    .refs{font-size:14px;color:var(--ink-soft)}
+    .refs li{margin:10px 0}
+    footer{background:#132f3a;color:#dbe9ec;padding:28px 0}
+    footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+    @media (max-width:760px){
+      .wrap{padding:0 16px}
+      .summary-grid,.cards,.stack,.photo-row{grid-template-columns:1fr}
+      .timeline{grid-template-columns:92px 24px 1fr}
+      table{font-size:13px}
+      th,td{padding:9px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">飞行汽车技术基础 · 课程案例</p>
+      <h1>EH216-S：技术可行性、应用场景与市场可行性</h1>
+      <p class="subtitle">EH216-S 不是一辆同时具备道路行驶能力的两栖飞行汽车，而是一款面向城市低空载人场景的纯飞式无人驾驶 eVTOL。它真正值得分析的问题是：多旋翼冗余构型、自动驾驶与远程监视、适航审定路径、有限航程和隔离空域运行，如何共同定义一种可商业化的低空载人产品。</p>
+      <div class="meta">
+        <span>研究对象：亿航智能 EH216-S</span>
+        <span>课程：飞行汽车技术基础</span>
+        <span>证据截止：2026-11-25</span>
+        <span>版本：1.0</span>
+      </div>
+      <figure class="hero-figure">
+        <img src="assets/eh216s-airframe.jpg" alt="EH216-S 无人驾驶载人 eVTOL 外观">
+        <figcaption>题图采用 EH216-S 公开产品图片，仅用于识别研究对象；参数与结论以官方资料、民航局专用条件和公开报道为准。</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <div class="wrap">
+      <a href="#summary">执行摘要</a>
+      <a href="#method">研究边界</a>
+      <a href="#history">发展路径</a>
+      <a href="#definition">产品定义</a>
+      <a href="#architecture">系统架构</a>
+      <a href="#safety">安全与适航</a>
+      <a href="#scenarios">应用场景</a>
+      <a href="#market">市场可行性</a>
+      <a href="#comparison">竞品比较</a>
+      <a href="#roadmap">工程化路线</a>
+      <a href="#refs">参考文献</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="summary">
+      <h2>执行摘要</h2>
+      <ol class="lead">
+        <li>EH216-S 是一款双座、全电动、无人驾驶、垂直起降的载人航空器。按照民航局专用条件，它由动力电池驱动 8 对升力/推力部件，在预设航线上自主飞行，地面远程机组负责监视与应急指挥。</li>
+        <li>公开资料能够支持的判断是：该机型已完成型号合格证、生产许可证和标准适航证等关键审定环节，并在广州、合肥等地开展低空观光类商业试运行；但它仍然是短航程、低载客、隔离空域内的有限场景产品，不能直接等同于成熟的城市空中出租车网络。</li>
+        <li>技术可行性应拆成三层：演示与试飞已验证；小批量制造和封闭场景运营已进入工程化阶段；高密度城市通勤、复杂气象与跨城航线仍待持续验证。</li>
+        <li>市场可行性目前更接近“文旅观光 + 示范运营 + 场景定制采购”的早期业务，而不是面向大众通勤的高频网约车市场。30 公里航程、2 座载客和垂直起降场地要求，决定了它的首批价值场景。</li>
+        <li>课程层面的启示是：评价一款飞行汽车不能只看外形、宣传视频或订单传闻，而应回到飞行包线、冗余安全、适航合规、空域规则、场站设施、维护体系和全寿命成本。</li>
+      </ol>
+      <div class="summary-grid">
+        <div class="stat"><b>2</b><span>乘员座位</span></div>
+        <div class="stat"><b>30 km</b><span>最大航程</span></div>
+        <div class="stat"><b>130 km/h</b><span>最大设计速度</span></div>
+        <div class="stat"><b>25 min</b><span>最大航时</span></div>
+      </div>
+    </section>
+
+    <section id="method">
+      <h2>01 研究设计与证据边界</h2>
+      <p>本文采用案例调研式评估，而不是正式的多评审员系统综述。研究过程包括问题界定、资料检索、来源分级、技术拆解、合规梳理、场景与市场判断。研究对象限定为 EH216-S 机型族，时间范围从 2020 年 12 月提交型号合格审定申请至 2026 年 11 月公开信息。</p>
+      <p>资料来源包括亿航官方产品页与适航历程、中国民航局发布的专用条件、企业财报与公告、地方政府及主流媒体报道、行业分析材料。官方披露用于确认企业主张和公开参数；专用条件用于理解适航约束；第三方报道用于交叉核验运营进展；行业材料只用于建立量级判断，不替代官方数据。</p>
+      <div class="note warning">
+        <strong>边界说明：</strong>公开宣传图、观光视频和演示架次可以支持“产品已展示并完成部分运营”这一观察，但不能自动证明复杂气象条件下的可靠性、高密度空域运行能力、长期疲劳寿命、维修成本或规模化盈利水平。
+      </div>
+      <table>
+        <colgroup><col><col><col></colgroup>
+        <thead><tr><th>来源类别</th><th>检索与核对方向</th><th>在本文中的用途</th></tr></thead>
+        <tbody>
+          <tr><td>企业官方</td><td>产品页、适航历程、财报、运营公告</td><td>确认构型、参数、认证节点和交付运营口径</td></tr>
+          <tr><td>监管文件</td><td>EH216-S 专用条件、审定章节、运行限制</td><td>理解性能、结构、动力、系统、链路与地面站要求</td></tr>
+          <tr><td>新闻与地方报道</td><td>广州、合肥等示范航线、观光票价和架次</td><td>交叉核验首批落地场景，不直接外推为全网运力</td></tr>
+          <tr><td>课程材料</td><td>产业场景、产业链、支撑技术、标准法规与安全工程</td><td>建立分析框架，把产品放回低空经济与系统工程背景</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="history">
+      <h2>02 发展路径：从审定突破到示范运营</h2>
+      <p>EH216-S 的发展不是单一产品发布过程，而是“型号研发—专用条件审定—样机验证—生产许可—运营许可—场景试运行”逐步推进的过程。2020 年底提交 TC 申请后，民航局在缺乏同类载人无人驾驶航空器规章可直接套用的情况下，为该型号制定了专用条件。</p>
+      <div class="timeline">
+        <div class="time">2020.12</div><div class="dot"></div><div class="body"><strong>提交型号合格证申请。</strong>亿航向民航局适航司提交 EH216-S 无人驾驶航空器系统 TC 申请；2021 年 1 月正式受理。</div>
+        <div class="time">2022.02</div><div class="dot"></div><div class="body"><strong>专用条件颁布。</strong>民航局发布《亿航 EH216-S 型无人驾驶航空器系统专用条件》，明确性能、结构、动力、系统、地面控制站与数据链路等审定边界。</div>
+        <div class="time">2023.10</div><div class="dot"></div><div class="body"><strong>取得型号合格证。</strong>EH216-S 获得民航局颁发的 TC，被企业表述为全球无人驾驶 eVTOL 领域的相关突破；该节点证明型号设计满足审定目标。</div>
+        <div class="time">2023.12</div><div class="dot"></div><div class="body"><strong>取得标准适航证。</strong>样机完成制造符合性与验证流程，标准适航证关注具体航空器的适航状态。</div>
+        <div class="time">2024.03</div><div class="dot"></div><div class="body"><strong>取得生产许可证。</strong>PC 标志着企业生产体系进入受控批量制造阶段，但生产许可仍需结合持续适航和交付质量观察。</div>
+        <div class="time">2025.03</div><div class="dot"></div><div class="body"><strong>首批运营合格证落地。</strong>EH216-S 相关运营航司获得载人类民用无人驾驶航空器 OC，运营主体成为商业运行的关键环节。</div>
+        <div class="time">2026</div><div class="dot"></div><div class="body"><strong>观光与示范运营推进。</strong>广州、合肥等地围绕低空观光、城市景观飞行开展售票或试运行；公开报道显示业务仍以短程、固定航线和试点城市为主。</div>
+      </div>
+      <p>从创新管理角度看，审定节点解决的是“设计是否可接受、制造是否受控、运营是否被允许”的问题；市场节点解决的则是“谁付费、飞哪里、多久飞一次、成本能否覆盖”的问题。两者不能互相替代。</p>
+    </section>
+
+    <section id="definition">
+      <h2>03 版本与产品定义：纯飞式无人驾驶载人航空器</h2>
+      <p>EH216-S 的产品身份需要与“可上路的飞行汽车”区分开。它没有道路行驶机构，也不承担传统汽车的底盘、悬架和路面碰撞合规要求；它面向的是低空三维空间，核心对象是载人航空器、地面控制站和数据链路组成的系统。</p>
+      <table>
+        <colgroup><col><col><col><col><col></colgroup>
+        <thead><tr><th>维度</th><th>公开定义</th><th>关键约束</th><th>证据状态</th><th>课程判断</th></tr></thead>
+        <tbody>
+          <tr><td>驾驶模式</td><td>预设航线自主飞行，远程机组监视并在应急时介入</td><td>机上无驾驶员和操纵装置，依赖通信链路与地面站</td><td>专用条件与官方资料</td><td>自动驾驶减少了机上驾驶员负荷，但把安全责任转移到系统、链路和运营流程</td></tr>
+          <tr><td>载客能力</td><td>2 名乘员，非增压座舱</td><td>载客量小，不适合批量通勤</td><td>专用条件</td><td>首批更适合观光、体验和点对点短程接驳</td></tr>
+          <tr><td>动力形式</td><td>全电驱动，8 对升力/推力部件</td><td>航程、航时受电池能量密度约束</td><td>专用条件与官方产品页</td><td>纯电运行噪声与排放较低，但补能和电池衰减需要纳入运营成本</td></tr>
+          <tr><td>运行空域</td><td>低空隔离空域，主要面向 UAM 商业载客试点</td><td>早期不具备高密度开放空域自由飞行条件</td><td>专用条件与运营公告</td><td>场景开放节奏取决于空域管理、航路划设和基础设施</td></tr>
+        </tbody>
+      </table>
+      <div class="photo-row">
+        <figure><img src="assets/eh216s-city.jpg" alt="EH216-S 与城市起降场地"><figcaption>城市边缘或专用起降平台是早期 eVTOL 运行的基础条件。</figcaption></figure>
+        <figure><img src="assets/eh216s-cabin.jpg" alt="EH216-S 双座座舱"><figcaption>双座座舱强调短程体验与轻量化布局，而非大容量运输。</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2>04 系统架构与关键技术</h2>
+      <p>从公开信息重构，EH216-S 的系统可以分为车辆/机体平台、能源与推进、感知与飞控、地面运行支撑、外部运行约束五部分。未公开的内部控制拓扑、软件架构和具体可靠性指标不应在案例中臆测。</p>
+      <div class="stack">
+        <div class="card"><h3>机体与结构</h3><p>座舱采用双座布局，机身使用轻量化复合材料，起落架为滑橇式结构。多旋翼布局把升力部件分散在机身周围，通过各旋翼转速差实现姿态和轨迹控制。</p></div>
+        <div class="card"><h3>动力推进</h3><p>全电动力由动力电池、电机、旋翼/螺旋桨和配电系统组成。共轴双桨与多组旋翼布置提供冗余裕度；单组动力失效后的控制能力需要结合具体失效模式和包线评价。</p></div>
+        <div class="card"><h3>飞控与冗余</h3><p>官方资料称飞控、动力等关键部件采用多套备份，多套飞控配合投票机制和多传感器；Fail-Safe 系统持续监测健康状态，判断继续飞行或就近应急降落。</p></div>
+      </div>
+      <h3>4.1 多旋翼冗余：不是“多装几个桨”这么简单</h3>
+      <p>分布式旋翼的价值在于把升力和控制能力分散到多个执行机构。单个电机、桨叶或桨组出现问题时，其余旋翼仍可能维持姿态稳定并进入应急程序。但冗余是否有效，取决于故障检测速度、剩余推力裕度、推力分配算法、电池与配电独立性，以及降级后的飞行包线。</p>
+      <h3>4.2 电池与航程：能量密度是硬边界</h3>
+      <p>专用条件给出的最大航程为 30 公里、最大航时 25 分钟。这组数字说明 EH216-S 当前定位是短程飞行，而不是城际干线运输。电池重量、可用能量、温度、衰减、快充次数和安全余量共同决定实际可用航程；宣传载客体验时，必须扣除预留电量、复飞余量和应急降落裕度。</p>
+      <h3>4.3 自动驾驶与远程机组</h3>
+      <p>机上没有驾驶员，意味着飞行计划、起降监视、异常告警、链路状态和应急处置都要由机载系统与地面运营中心协同完成。专用条件对地面控制站、语音图像传输、数据链路冗余、链路丢失、链路切换和网络安保都提出了要求。对这类产品而言，远程机组不是“后台客服”，而是运行安全链条的一部分。</p>
+      <h3>4.4 轻量结构与旋翼气动噪声</h3>
+      <p>载人航空器对重量高度敏感，复合材料用于减重和结构耐久；但旋翼系统仍会产生宽频噪声和下洗气流。早期观光航线通常选择临水、公园、景区或专用场地，正是为了降低噪声、安全间距和地面人员影响。未来进入居住区上空时，噪声频谱、出现频次、夜间运行和公众接受度都需要重新评估。</p>
+    </section>
+
+    <section id="safety">
+      <h2>05 安全、SOTIF 与适航</h2>
+      <p>载人 eVTOL 的安全评价不能只看部件是否备份，还要覆盖功能失效、环境场景、运行场景和持续适航。课程材料把车规级能力提升到航规级作为核心挑战，EH216-S 正是这一转换的典型样本：它借鉴了新能源汽车在三电、智能化和制造体系上的经验，但安全目标、失效分析和验证方法必须按载人航空体系重构。</p>
+      <div class="cards">
+        <div class="card"><h3>硬件冗余</h3><p>飞控、动力、电源和通信等关键环节采用备份设计，目的是在单点故障后保留足够控制能力。</p></div>
+        <div class="card"><h3>系统投票与传感器</h3><p>多套飞控和多传感器交叉校验，降低单一传感误差或控制器异常导致误动作的风险。</p></div>
+        <div class="card"><h3>故障降级与应急降落</h3><p>健康监测系统识别异常后，应根据剩余能量、位置、场地和风险判断续飞、返航或就近降落。</p></div>
+        <div class="card"><h3>链路安保</h3><p>数据链路需要抗干扰、防入侵，并具备链路冗余、切换和丢失处置程序。</p></div>
+        <div class="card"><h3>结构与乘员保护</h3><p>专用条件覆盖结构强度、耐久性、应急着陆、乘员约束、撤离设施、防火和高能转子防护等要求。</p></div>
+        <div class="card"><h3>运行安全</h3><p>除航空器本身外，还需要起降场地隔离、地面人员管理、气象评估、航线审批、维护检查和人员资质。</p></div>
+      </div>
+      <div class="note">
+        <strong>仍需观察的安全问题：</strong>公开材料通常强调备份和 Fail-Safe，但不完整披露失效概率、软件独立性、复杂气象边界、极端电池热失控处置、长期循环疲劳和事故责任划分。这些问题需要随示范运营数据积累持续验证。
+      </div>
+    </section>
+
+    <section id="scenarios">
+      <h2>06 应用场景：先从隔离空域和高价值短途开始</h2>
+      <p>课程材料把飞行汽车应用分为专业化与大众化两条路径。EH216-S 早期落在两条路径的交汇点：对外呈现大众化观光体验，对内仍是受规则约束的专业化运营。</p>
+      <table>
+        <colgroup><col><col><col><col></colgroup>
+        <thead><tr><th>场景</th><th>适配程度</th><th>运行条件</th><th>主要限制</th></tr></thead>
+        <tbody>
+          <tr><td>低空文旅观光</td><td>当前最成熟</td><td>固定航线、固定起降点、日间或良好气象、游客预先购票</td><td>受天气、噪声、景区容量和票价接受度限制</td></tr>
+          <tr><td>景区/园区接驳</td><td>中等适配</td><td>水面、公园、岛屿、度假区等短距离点对点航线</td><td>需要专用起降平台和地面秩序管理</td></tr>
+          <tr><td>城市枢纽接驳</td><td>中期探索</td><td>连接机场、高铁站、商务区或核心景点，路线相对固定</td><td>起降场地、航路审批、充电补能和安全间距尚不完善</td></tr>
+          <tr><td>应急救援/医疗</td><td>部分潜力</td><td>水面、复杂地形或地面交通受阻时的短途人员转运</td><td>载货、续航、全天候、备降场地和可靠性要求更高</td></tr>
+          <tr><td>大众城市通勤</td><td>当前不成熟</td><td>高密度开放空域、高频次班次、成熟空管和场站网络</td><td>航程、载客量、成本、噪声、安全和公众接受度均未到位</td></tr>
+        </tbody>
+      </table>
+      <p>广州、合肥的早期实践说明，eVTOL 首先解决的不是“把所有人从地面搬到天上”，而是在可控航线内提供体验型、展示型和高附加值的短途空中服务。示范运营的价值在于积累飞行数据、维护流程、乘客体验和监管经验，而不是提前宣称城市通勤网络已经成型。</p>
+    </section>
+
+    <section id="market">
+      <h2>07 市场可行性：早期场景成立，规模商用仍受约束</h2>
+      <p>市场判断应从需求侧、供给侧和支撑环境三方面展开。需求侧是游客、景区、城市运营商和政府示范项目；供给侧是整机制造、电池电机、飞控航电、维保和运营服务；支撑环境则是空域规则、起降设施、补能网络、保险责任和标准体系。</p>
+      <div class="cards">
+        <div class="card"><h3>有利因素</h3><ul><li>已走通 TC、PC、AC、OC 等关键审定路径，具备先发样本意义。</li><li>纯电运行在城市低空场景中排放和噪声相对可控。</li><li>无人驾驶减少机上驾驶员配置，适合固定航线和标准化班次。</li><li>低空经济政策与地方示范项目提供早期场地和订单机会。</li></ul></div>
+        <div class="card"><h3>约束因素</h3><ul><li>2 座、30 公里、25 分钟的指标限制了运输规模。</li><li>整机、备件、保险、培训、场地和维护成本尚难摊薄。</li><li>电池能量密度、快充寿命和低温性能仍影响运营效率。</li><li>空域开放、航路划设、场站建设和公众接受度需要时间。</li></ul></div>
+        <div class="card"><h3>商业路径</h3><ul><li>短期：整机销售给景区、城投或运营方，配合示范航线。</li><li>中期：运营方按飞行时长或人次收费，形成观光与接驳服务。</li><li>长期：只有在标准化航线、维保体系和数字空管成熟后，才可能走向网络化运营。</li></ul></div>
+      </div>
+      <p>公开财报与订单新闻可以反映企业推进节奏，但订单意向不等于确认收入，交付架次和飞行架次也不能直接换算成利润。评价市场可行性时，应同时记录订单数量、定金条款、交付状态、实际飞行小时、退票或退款规则、运营成本和事故责任。</p>
+    </section>
+
+    <section id="comparison">
+      <h2>08 竞品比较：不同构型对应不同任务假设</h2>
+      <p>载人 eVTOL 并没有单一标准答案。有人驾驶与无人驾驶、多旋翼与倾转旋翼、纯飞式与分体式，背后是载客量、航程、冗余、飞行员配置和监管路径的不同权衡。</p>
+      <table>
+        <colgroup><col><col><col><col><col></colgroup>
+        <thead><tr><th>类型/代表方向</th><th>典型构型</th><th>优势</th><th>主要挑战</th><th>与 EH216-S 的差异</th></tr></thead>
+        <tbody>
+          <tr><td>无人驾驶多旋翼</td><td>EH216-S 类八对旋翼双座布局</td><td>结构直接、垂直起降、冗余旋翼、无需机上驾驶员</td><td>航程短、载客少、依赖隔离空域和地面运营</td><td>本研究对象</td></tr>
+          <tr><td>有人驾驶倾转旋翼</td><td>Joby、Archer 等方向，1 名飞行员加多名乘客</td><td>巡航效率和载客量更有潜力，适合区域接驳</td><td>构型复杂、认证周期长、飞行员体系仍需保留</td><td>EH216-S 选择无人驾驶和多旋翼，牺牲部分航程换取简化与自动化</td></tr>
+          <tr><td>分体式陆空两栖</td><td>陆行体携带可拆卸飞行体</td><td>贴近汽车使用习惯，地面运输与空中飞行分离</td><td>连接机构、地面载具、补能和两部分协同复杂</td><td>EH216-S 不承担道路行驶，专注飞行器本身</td></tr>
+          <tr><td>货运/工业无人机</td><td>载货或巡检平台</td><td>成本较低、监管经验较多</td><td>不直接覆盖载人安全等级</td><td>货运经验可迁移到飞控、链路和运营，但载人需重新提升安全等级</td></tr>
+        </tbody>
+      </table>
+      <p>比较时不应只比最大速度或外观激进程度。更关键的问题是：飞机为谁飞、飞多远、载多少人、在什么空域飞、由谁负责应急、出故障后如何降级、长期维护成本由谁承担。</p>
+    </section>
+
+    <section id="roadmap">
+      <h2>09 工程化路线：从示范验证到规模化运行</h2>
+      <div class="cards">
+        <div class="card"><h3>近期：做深固定航线</h3><p>围绕观光、景区、园区和城市展示航线积累架次，完善起降点、充电、检查、维修、乘客告知和应急处置流程。</p></div>
+        <div class="card"><h3>中期：拓展标准化接驳</h3><p>在重点城市群连接枢纽、景点和商务区，推动航路划设、数字调度、备件供应和运营人员资质标准化。</p></div>
+        <div class="card"><h3>远期：走向网络化低空交通</h3><p>只有在电池能量密度、整机成本、空管能力、安全记录和公众接受度同步成熟后，才可能进入更高频次、更大范围的立体交通网络。</p></div>
+      </div>
+      <h3>课程延伸判断</h3>
+      <ul>
+        <li>载荷航程仍是基础瓶颈：课程材料提出规模化实用需要更大载荷与航程，EH216-S 当前指标更接近早期短途平台。</li>
+        <li>适航安全需要全生命周期覆盖：从设计、制造、试飞、运营到维修和退役，安全证据不能只集中在首飞或首证。</li>
+        <li>智能驾驶不能替代系统安全：自动驾驶减少机上操作，但增加了软件、链路、数据安全和远程运行责任。</li>
+        <li>航空与汽车制造融合要分层借鉴：三电、智能化和供应链经验可以迁移，可靠性、冗余、失效分析和维护体系必须按航空要求重构。</li>
+      </ul>
+    </section>
+
+    <section id="refs">
+      <h2>参考文献与资料来源</h2>
+      <ol class="refs">
+        <li>亿航智能官方产品页：EH216-S 载人级自动驾驶航空器，<a href="https://www.ehang.com/cn/ehang216s/">ehang.com/cn/ehang216s/</a>。</li>
+        <li>亿航智能官方适航历程：TC、标准适航证、PC、OC 时间线，<a href="https://www.ehang.com/cn/ehang216s/airworthiness/">ehang.com/cn/ehang216s/airworthiness/</a>。</li>
+        <li>中国民用航空局：《亿航 EH216-S 型无人驾驶航空器系统专用条件》（SC-21-002，2022-02-09）。</li>
+        <li>亿航智能财报与 SEC 披露：EH216 系列交付、运营准备与 OC 进展，<a href="https://ir.ehang.com/">ir.ehang.com</a>。</li>
+        <li>新华网/人民日报相关报道：EH216-S 城市空中交通与示范运行情况。</li>
+        <li>广州市人民政府门户网站：广州低空经济与 EH216-S 观光场景报道。</li>
+        <li>课程材料：《第四章 飞行汽车的现状及展望》《第五章 飞行汽车产业分析及支撑技术》。</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Fundamentals of Flying Vehicle Technology · EH216-S Case Study</span>
+      <span>课程作业：技术、场景与市场可行性分析</span>
+    </div>
+  </footer>
+</body>
+</html>
